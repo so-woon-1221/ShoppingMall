@@ -1,9 +1,8 @@
-import React from 'react';
+import React, { useState, useCallback } from 'react';
 import styled from 'styled-components';
-import palette from '../../lib/styles/palette';
 import Button from './Button';
 
-const SearchWrapper = styled.div`
+const SearchWrapper = styled.form`
   width: max-content;
   height: max-content;
   display: flex;
@@ -20,11 +19,23 @@ const Blank = styled.div`
 `;
 
 const Search = ({ props }) => {
+  const [searchText, setSearchText] = useState('');
+
+  const onChange = useCallback((e) => {
+    setSearchText(e.target.value);
+  }, []);
+
+  const onSubmit = useCallback((e) => {
+    setSearchText('');
+  });
+
   return (
     <>
-      <SearchWrapper>
-        <SearchInput type={'text'} />
-        <Button orange={'orange'}>검색</Button>
+      <SearchWrapper onSubmit={onSubmit}>
+        <SearchInput type={'text'} value={searchText} onChange={onChange} />
+        <Button orange={'orange'} type={'submit'}>
+          검색
+        </Button>
         <Blank />
       </SearchWrapper>
     </>

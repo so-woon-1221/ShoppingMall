@@ -29,6 +29,9 @@ dependencies {
     compile('org.springframework.boot:spring-boot-starter-web')
     testCompile('org.springframework.boot:spring-boot-starter-web')
 
-    implementation('org.springframework.boot:spring-boot-starter-data-mongodb')
+    implementation ('org.springframework.boot:spring-boot-starter-data-mongodb')
     compile('org.projectlombok:lombok')
+
+    annotationProcessor('org.projectlombok:lombok')
+    testAnnotationProcessor('org.projectlombok:lombok')
 }

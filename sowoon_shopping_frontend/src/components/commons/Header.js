@@ -42,7 +42,7 @@ const Header = () => {
       <HeaderBlock>
         <Wrapper>
           <Link className={'logo'} to={'/'}>
-            GOODA
+            GOODDA
           </Link>
           <div>
             <Link to={'/item'}>작품</Link>
