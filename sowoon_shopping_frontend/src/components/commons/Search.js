@@ -25,15 +25,15 @@ const Search = ({ props }) => {
     setSearchText(e.target.value);
   }, []);
 
-  const onSubmit = useCallback((e) => {
-    setSearchText('');
-  });
-
   return (
     <>
-      <SearchWrapper onSubmit={onSubmit}>
+      <SearchWrapper>
         <SearchInput type={'text'} value={searchText} onChange={onChange} />
-        <Button orange={'orange'} type={'submit'}>
+        <Button
+          orange={'orange'}
+          type={'submit'}
+          to={`/api/search/${searchText}`}
+        >
           검색
         </Button>
         <Blank />

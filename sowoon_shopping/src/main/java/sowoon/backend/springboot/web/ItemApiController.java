@@ -1,6 +1,7 @@
 package sowoon.backend.springboot.web;
 
 import lombok.RequiredArgsConstructor;
+import org.bson.types.ObjectId;
 import org.springframework.http.HttpEntity;
 import org.springframework.web.bind.annotation.*;
 import sowoon.backend.springboot.domain.item.Items;
@@ -19,15 +20,19 @@ public class ItemApiController {
         return itemService.save(itemSaveRequestDto);
     }
 
-    @GetMapping("/api/items")
+    @GetMapping("/")
     public List<Items> list() {
+        System.out.println("asdf");
         return itemService.list();
     }
 
     @GetMapping("/api/search/{text}")
     public List<Items> search(@PathVariable String text) {
-        List<Items> answer;
-        answer = itemService.search(text);
-        return answer;
+        return itemService.search(text);
+    }
+
+    @GetMapping("/api/item/{id}")
+    public Items read(@PathVariable String id){
+        return itemService.read(id);
     }
 }

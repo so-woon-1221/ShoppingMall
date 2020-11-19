@@ -1,4 +1,4 @@
-import { call, put } from 'redux-saga/effects';
+import { call, put, fork } from 'redux-saga/effects';
 import { startLoading, finishLoading } from '../modules/loading';
 
 export default function createRequestSaga(type, request) {
@@ -8,14 +8,17 @@ export default function createRequestSaga(type, request) {
   return function* (action) {
     yield put(startLoading(type)); //로딩 시작
     try {
+      const response = yield call(request, action.payload);
+      console.log(response);
       yield put({
         type: SUCCESS,
-        payload: action.payload.name,
+        // payload: action.payload,
+        payload: response.data,
       });
     } catch (e) {
       yield put({
         type: FAILURE,
-        payload: e.toString(),
+        payload: e,
         error: true,
       });
     }
