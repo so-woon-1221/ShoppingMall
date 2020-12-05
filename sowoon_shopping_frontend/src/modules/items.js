@@ -20,10 +20,11 @@ export const changeField = createAction(CHANGE_FIELD, ({ key, value }) => ({
 }));
 export const inputItem = createAction(
   INPUT_ITEMS,
-  ({ name, content, price, tags }) => ({
+  ({ name, content, price, thumbnail, tags }) => ({
     name,
     content,
     price,
+    thumbnail,
     tags,
   }),
 );
@@ -37,6 +38,7 @@ const initialState = {
   name: '',
   content: '',
   price: '',
+  thumbnail: '',
   tags: [],
   item: '',
   itemError: null,

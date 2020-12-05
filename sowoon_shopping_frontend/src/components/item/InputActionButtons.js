@@ -5,6 +5,7 @@ import Button from '../commons/Button';
 const InputActionButtonsBlock = styled.div`
   margin-top: 1rem;
   margin-bottom: 3rem;
+  padding-bottom: 3rem;
   button + button {
     margin-left: 0.5rem;
   }

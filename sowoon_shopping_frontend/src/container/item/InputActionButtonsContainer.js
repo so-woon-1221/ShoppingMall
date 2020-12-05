@@ -6,19 +6,26 @@ import { inputItem } from '../../modules/items';
 
 const InputActionButtonsContainer = ({ history }) => {
   const dispatch = useDispatch();
-  const { name, content, price, tags, item, itemError } = useSelector(
-    ({ items }) => ({
-      name: items.name,
-      content: items.content,
-      price: items.price,
-      tags: items.tags,
-      item: items.item,
-      itemError: items.itemError,
-    }),
-  );
+  const {
+    name,
+    content,
+    price,
+    thumbnail,
+    tags,
+    item,
+    itemError,
+  } = useSelector(({ items }) => ({
+    name: items.name,
+    content: items.content,
+    price: items.price,
+    thumbnail: items.thumbnail,
+    tags: items.tags,
+    item: items.item,
+    itemError: items.itemError,
+  }));
 
   const onPublish = () => {
-    dispatch(inputItem({ name, content, price, tags }));
+    dispatch(inputItem({ name, content, price, thumbnail, tags }));
   };
 
   const onCancel = () => {

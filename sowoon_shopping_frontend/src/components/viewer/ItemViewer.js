@@ -2,15 +2,43 @@ import React from 'react';
 import styled from 'styled-components';
 import palette from '../../lib/styles/palette';
 import Responsive from '../commons/Responsive';
+import Button from '../commons/Button';
 
-const ItemViewerBlock = styled(Responsive)`
-  margin-top: 4rem;
+// const ItemViewBlock = styled.div`
+//   display: block;
+// `;
+
+const ItemHeaderBlock = styled.div`
+  margin-top: 1.5rem;
+  width: 100%;
+  background: white;
+  //position: fixed;
+`;
+
+const ItemHeaderWrapper = styled(Responsive)`
+  display: flex;
+  justify-content: flex-start;
+  .item {
+    display: flex;
+  }
+`;
+
+const ItemImage = styled.img`
+  max-width: 50%;
+  height: auto;
+`;
+
+const Blank = styled.div`
+  width: 100px;
 `;
 
 const ItemHeader = styled.div`
-  border-bottom: 1px solid ${palette.gray[2]};
+  //position: fixed;
+  top: 5.5rem;
+  left: 55%;
   padding-bottom: 1rem;
   margin-bottom: 1rem;
+  background: white;
   h1 {
     font-size: 2rem;
     line-height: 1.5;
@@ -43,18 +71,20 @@ const Tags = styled.div`
   }
 `;
 
-const ItemContent = styled.div`
+const ItemContent = styled(Responsive)`
   font-size: 1.3125rem;
   color: ${palette.gray[8]};
+  //width: 100%;
+  //padding-left: 5rem;
 `;
 
 const ItemViewer = ({ item, error, loading }) => {
   if (error) {
     console.log(error);
     if (error.response && error.response.status === 404) {
-      return <ItemViewerBlock>존재하지 않는 아이템입니다.</ItemViewerBlock>;
+      return <ItemHeaderBlock>존재하지 않는 아이템입니다.</ItemHeaderBlock>;
     }
-    return <ItemViewerBlock>오류</ItemViewerBlock>;
+    return <ItemHeaderBlock>오류</ItemHeaderBlock>;
   }
 
   if (loading || !item) {
@@ -63,27 +93,34 @@ const ItemViewer = ({ item, error, loading }) => {
 
   console.log(item);
 
-  const { id, name, content, price, tags } = item;
+  let { id, name, content, price, tags, thumbnail } = item;
 
   return (
-    <ItemViewerBlock>
-      <ItemHeader>
-        <h1>{name}</h1>
-        <SubInfo>
-          <span>
-            <b>{price}</b>
-          </span>
-          {/*<span>{new Date(id.date).toLocaleDateString()}</span>*/}
-        </SubInfo>
-        <Tags>
-          {/*{tags.map((tag) => (*/}
-          {/*  <div className={'tag'}>#{tag}</div>*/}
-          {/*))}*/}
-          <div className={'tag'}>#{tags}</div>
-        </Tags>
-      </ItemHeader>
+    <div>
+      <ItemHeaderBlock>
+        <ItemHeaderWrapper>
+          <ItemImage src={thumbnail} />
+          <Blank />
+          <ItemHeader>
+            <h1>{name}</h1>
+            <SubInfo>
+              <span>
+                <b>{price}</b>
+              </span>
+            </SubInfo>
+            <Tags>
+              {tags.map((tag) => (
+                <div className={'tag'}>#{tag}</div>
+              ))}
+            </Tags>
+            <Button>구매</Button>
+            <Button orange>장바구니</Button>
+          </ItemHeader>
+        </ItemHeaderWrapper>
+      </ItemHeaderBlock>
+      {/*<Spacer2 />*/}
       <ItemContent dangerouslySetInnerHTML={{ __html: content }} />
-    </ItemViewerBlock>
+    </div>
   );
 };
 

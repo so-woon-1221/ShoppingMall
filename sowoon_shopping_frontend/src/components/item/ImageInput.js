@@ -32,11 +32,12 @@ const ImagePreview = styled.img`
   padding-top: 0.5rem;
   border: none;
   border-radius: 5px;
-  width: 300px;
-  height: 300px;
+  max-width: 50%;
+  height: auto;
+  display: block;
 `;
 
-const ImageInput = () => {
+const ImageInput = ({ thumbnail, onChangeField }) => {
   const [image, setImage] = useState(null);
   const [previewURL, setPreviewURL] = useState('');
 
@@ -48,6 +49,7 @@ const ImageInput = () => {
         const temp = reader.result;
         if (temp) {
           setPreviewURL(temp.toString());
+          onChangeField({ key: 'thumbnail', value: temp.toString() });
         }
       };
       if (e.target.files[0]) {
@@ -55,11 +57,11 @@ const ImageInput = () => {
         setImage(e.target.files[0]);
       }
     },
-    [image],
+    [image, previewURL],
   );
 
   useEffect(() => {
-    console.log(previewURL);
+    console.log(image);
   });
 
   return (
@@ -71,7 +73,7 @@ const ImageInput = () => {
           accept={'image/*'}
           onChange={onFileSelected}
         />
-        {previewURL && <ImagePreview src={previewURL} />}
+        {previewURL && <ImagePreview src={thumbnail} />}
       </ImageBlock>
     </ImageInputBlock>
   );

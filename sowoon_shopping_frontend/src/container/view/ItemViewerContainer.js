@@ -21,7 +21,11 @@ const ItemViewerContainer = ({ match }) => {
     };
   }, [dispatch, itemId]);
 
-  return <ItemViewer item={item} error={error} loading={loading} />;
+  return (
+    <>
+      <ItemViewer item={item} error={error} loading={loading} />;
+    </>
+  );
 };
 
 export default withRouter(ItemViewerContainer);

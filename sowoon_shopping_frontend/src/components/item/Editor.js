@@ -4,6 +4,7 @@ import 'quill/dist/quill.snow.css';
 import styled from 'styled-components';
 import palette from '../../lib/styles/palette';
 import Responsive from '../commons/Responsive';
+import NumberFormat from 'react-number-format';
 
 const EditorBlock = styled(Responsive)`
   padding-top: 4rem;
@@ -20,7 +21,7 @@ const TitleInput = styled.input`
   width: 100%;
 `;
 
-const PriceInput = styled.input`
+const PriceInput = styled(NumberFormat)`
   font-size: 1rem;
   outline: none;
   padding-top: 0.5rem;
@@ -100,10 +101,17 @@ const Editor = ({ name, content, price, onChangeField }) => {
       <QuillWrapper>
         <div ref={quillElement} />
       </QuillWrapper>
+      {/*<PriceInput*/}
+      {/*  placeholder={'가격을 입력하세요'}*/}
+      {/*  onChange={onChangePrice}*/}
+      {/*  value={price}*/}
+      {/*/>*/}
       <PriceInput
+        thousandSeparator={true}
+        suffix={'원'}
+        value={price}
         placeholder={'가격을 입력하세요'}
         onChange={onChangePrice}
-        value={price}
       />
     </EditorBlock>
   );
