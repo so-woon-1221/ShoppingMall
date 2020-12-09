@@ -12,7 +12,6 @@ const ItemHeaderBlock = styled.div`
   margin-top: 1.5rem;
   width: 100%;
   background: white;
-  //position: fixed;
 `;
 
 const ItemHeaderWrapper = styled(Responsive)`
@@ -71,7 +70,17 @@ const Tags = styled.div`
   }
 `;
 
-const ItemContent = styled(Responsive)`
+const ItemContentWrapper = styled(Responsive)``;
+
+const ItemContentHeader = styled.div`
+  h1 {
+    color: ${palette.gray[6]};
+    font-size: 1.5rem;
+  }
+  border-bottom: 1px solid ${palette.gray[4]};
+`;
+
+const ItemContent = styled.div`
   font-size: 1.3125rem;
   color: ${palette.gray[8]};
   //width: 100%;
@@ -119,7 +128,12 @@ const ItemViewer = ({ item, error, loading }) => {
         </ItemHeaderWrapper>
       </ItemHeaderBlock>
       {/*<Spacer2 />*/}
-      <ItemContent dangerouslySetInnerHTML={{ __html: content }} />
+      <ItemContentWrapper>
+        <ItemContentHeader>
+          <h1>상세 설명</h1>
+        </ItemContentHeader>
+        <ItemContent dangerouslySetInnerHTML={{ __html: content }} />
+      </ItemContentWrapper>
     </div>
   );
 };

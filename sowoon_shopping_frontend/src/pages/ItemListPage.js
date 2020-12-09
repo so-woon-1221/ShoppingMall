@@ -1,12 +1,12 @@
 import React from 'react';
 import Header from '../components/commons/Header';
-import ItemListViewer from '../components/viewer/ItemListViewer';
+import ItemListViewerContainer from '../container/view/ItemListViewerContainer';
 
 const ItemListPage = () => {
   return (
     <>
       <Header />
-      <ItemListViewer />
+      <ItemListViewerContainer />
     </>
   );
 };

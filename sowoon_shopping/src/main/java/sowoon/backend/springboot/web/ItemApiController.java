@@ -20,7 +20,7 @@ public class ItemApiController {
         return itemService.save(itemSaveRequestDto);
     }
 
-    @GetMapping("/")
+    @GetMapping("/api/item")
     public List<Items> list() {
         System.out.println("asdf");
         return itemService.list();

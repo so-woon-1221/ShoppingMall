@@ -9,7 +9,7 @@ import ItemListPage from './pages/ItemListPage';
 function App() {
   return (
     <>
-      <Route component={IndexPage} path={'/'} exact />
+      <Route component={ItemListPage} path={'/'} exact />
       <Route component={ItemInputPage} path={'/input'} />
       <Route component={ItemPage} path={'/item/:itemId'} />
       <Route component={ItemListPage} path={'/item'} exact />

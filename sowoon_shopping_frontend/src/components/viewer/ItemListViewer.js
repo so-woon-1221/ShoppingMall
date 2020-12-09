@@ -21,7 +21,8 @@ const ItemListView = styled.div`
 `;
 
 const Item = styled.div`
-  border: 1px black;
+  padding-bottom: 3rem;
+  display: inline-flex;
 `;
 
 const ItemImage = styled.img`
@@ -29,45 +30,53 @@ const ItemImage = styled.img`
   height: auto;
 `;
 
-const ItemListViewer = () => {
+const ItemInfo = styled.div`
+  padding-left: 1rem;
+  &:hover {
+    color: ${palette.gray[6]};
+  }
+  h1 {
+    font-size: 1rem;
+  }
+  h2 {
+    font-size: 0.8rem;
+  }
+  p {
+    margin-top: 0.5rem;
+  }
+`;
+
+const listItem = ({ item }) => {
+  const { thumbnail, name, price, id } = item;
+  return (
+    <Item>
+      {/*<ItemImage src={thumbnail} />*/}
+      <ItemInfo>
+        <h2>GOODDA</h2>
+        <h1>{name}</h1>
+        <p>{price}</p>
+        <Button>확인</Button>
+      </ItemInfo>
+    </Item>
+  );
+};
+
+const ItemListViewer = ({ loading, error, items }) => {
+  if (error) {
+    return <ItemListViewBlock>에러가 발생했습니다.</ItemListViewBlock>;
+  }
   return (
     <>
       <ItemListViewBlock>
         <ItemListViewWrapper>
-          <ItemListView className={'container'}>
-            <Item>
-              <ItemImage
-                src={
-                  'https://image.msscdn.net/images/goods_img/20200805/1537781/1537781_1_500.jpg'
-                }
-              />
-              <Button>gg3</Button>
-            </Item>
-            <Item>
-              <ItemImage
-                src={
-                  'https://image.msscdn.net/images/goods_img/20200805/1537781/1537781_1_500.jpg'
-                }
-              />
-              <Button>gg3</Button>
-            </Item>
-            <Item>
-              <ItemImage
-                src={
-                  'https://image.msscdn.net/images/goods_img/20200805/1537781/1537781_1_500.jpg'
-                }
-              />
-              <Button>gg3</Button>
-            </Item>
-            <Item>
-              <ItemImage
-                src={
-                  'https://image.msscdn.net/images/goods_img/20200805/1537781/1537781_1_500.jpg'
-                }
-              />
-              <Button>gg3</Button>
-            </Item>
-          </ItemListView>
+          <ItemListView className={'container'}></ItemListView>
+          {!loading && items && (
+            <div>
+              {items.map((item) => (
+                <listItem item={item} key={item.thumbnail} />
+              ))}
+            </div>
+          )}
         </ItemListViewWrapper>
       </ItemListViewBlock>
     </>
