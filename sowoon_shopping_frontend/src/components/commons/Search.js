@@ -1,6 +1,7 @@
 import React, { useState, useCallback } from 'react';
 import styled from 'styled-components';
 import Button from './Button';
+import { withRouter } from 'react-router-dom';
 
 const SearchWrapper = styled.form`
   width: max-content;
@@ -18,17 +19,30 @@ const Blank = styled.div`
   width: 80px;
 `;
 
-const Search = ({ props }) => {
+const Search = ({ history }) => {
   const [searchText, setSearchText] = useState('');
 
-  const onChange = useCallback((e) => {
-    setSearchText(e.target.value);
-  }, []);
+  const onChange = useCallback(
+    (e) => {
+      setSearchText(e.target.value);
+    },
+    [searchText],
+  );
+
+  const onSubmit = useCallback((e) => {
+    e.preventDefault();
+    history.push(`/search/${searchText}`);
+  });
 
   return (
     <>
-      <SearchWrapper>
-        <SearchInput type={'text'} value={searchText} onChange={onChange} />
+      <SearchWrapper onSubmit={onSubmit}>
+        <SearchInput
+          type={'text'}
+          name={'searchText'}
+          value={searchText}
+          onChange={onChange}
+        />
         <Button orange={'orange'} type={'submit'} to={`/search/${searchText}`}>
           검색
         </Button>
@@ -38,4 +52,4 @@ const Search = ({ props }) => {
   );
 };
 
-export default Search;
+export default withRouter(Search);

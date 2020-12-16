@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import Button from '../commons/Button';
 import palette from '../../lib/styles/palette';
 import Responsive from '../commons/Responsive';
 import { Link } from 'react-router-dom';
@@ -65,6 +64,7 @@ const ItemListViewer = ({ loading, error, items }) => {
   if (error) {
     return <ItemListViewBlock>에러가 발생했습니다.</ItemListViewBlock>;
   }
+
   return (
     <>
       <ItemListViewBlock>
@@ -73,7 +73,7 @@ const ItemListViewer = ({ loading, error, items }) => {
             {!loading && items && (
               <>
                 {items.map((item) => (
-                  <ListItem item={item} key={item.tags} />
+                  <ListItem item={item} key={item.id} />
                 ))}
               </>
             )}
