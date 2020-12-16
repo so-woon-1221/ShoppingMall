@@ -13,12 +13,13 @@ import java.util.Date;
 public class Items{
 
     @Id
-    private ObjectId id;
+    private String id;
     private final String name;
     private final String content;
     private final String price;
     private final String thumbnail;
     private final String tags[];
+    private Date publishedDate = new Date();
 
     @Builder
     public Items(String name, String content, String price, String thumbnail, String tags[]){
@@ -38,10 +39,10 @@ public class Items{
     }
 
     public String[] getTags() {return tags; }
-
-    public ObjectId getId() {
-        return id;
-    }
+//
+//    public ObjectId getId() {
+//        return id;
+//    }
 
     public String getThumbnail() {
         return thumbnail;

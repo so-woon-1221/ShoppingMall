@@ -26,7 +26,6 @@ const PriceInput = styled(NumberFormat)`
   outline: none;
   padding-top: 0.5rem;
   border: none;
-  //margin-bottom: 2rem;x
   width: 100%;
   text-align: right;
 `;

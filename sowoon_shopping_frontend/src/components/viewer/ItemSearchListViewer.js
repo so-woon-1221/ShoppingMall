@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import Button from '../commons/Button';
 import palette from '../../lib/styles/palette';
 import Responsive from '../commons/Responsive';
+import { Link } from 'react-router-dom';
 
 const ItemListViewBlock = styled.div`
   margin-top: 1.5rem;
@@ -20,7 +21,7 @@ const ItemListView = styled.div`
   display: grid;
 `;
 
-const Item = styled.div`
+const Item = styled(Link)`
   padding-bottom: 3rem;
   display: inline-flex;
 `;
@@ -47,7 +48,7 @@ const ItemInfo = styled.div`
 const ListItem = ({ item }) => {
   const { thumbnail, name, price, id, tags } = item;
   return (
-    <Item>
+    <Item to={`/item/${id}`}>
       <ItemImage src={thumbnail} />
       <ItemInfo>
         <h1>{name}</h1>
@@ -55,7 +56,6 @@ const ListItem = ({ item }) => {
         {tags.map((tag) => (
           <h2>#{tag}</h2>
         ))}
-        <Button>{id.date}</Button>
       </ItemInfo>
     </Item>
   );
@@ -74,6 +74,14 @@ const ItemSearchListViewer = ({ loading, error, items }) => {
     );
   }
 
+  if (!items && !loading) {
+    return (
+      <ItemListViewBlock>
+        <ItemListViewWrapper>loading...</ItemListViewWrapper>
+      </ItemListViewBlock>
+    );
+  }
+
   return (
     <>
       <ItemListViewBlock>
@@ -82,7 +90,7 @@ const ItemSearchListViewer = ({ loading, error, items }) => {
             {!loading && items && (
               <>
                 {items.map((item) => (
-                  <ListItem item={item} key={item.tags} />
+                  <ListItem item={item} key={item.id.counter} />
                 ))}
               </>
             )}
