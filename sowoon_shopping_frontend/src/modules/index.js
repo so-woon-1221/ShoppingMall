@@ -3,7 +3,7 @@ import { all } from 'redux-saga/effects';
 import items, { inputSaga } from './items';
 import loading from './loading';
 import item, { readSaga } from './item';
-import list, { listSaga } from './list';
+import list, { listSaga, searchSaga } from './list';
 
 const rootReducer = combineReducers({
   loading,
@@ -13,7 +13,7 @@ const rootReducer = combineReducers({
 });
 
 export function* rootSaga() {
-  yield all([inputSaga(), readSaga(), listSaga()]);
+  yield all([inputSaga(), readSaga(), listSaga(), searchSaga()]);
 }
 
 export default rootReducer;

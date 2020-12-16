@@ -2,7 +2,7 @@ import logo from './logo.svg';
 import './App.css';
 import { Route } from 'react-router-dom';
 import ItemInputPage from './pages/ItemInputPage';
-import IndexPage from './pages/IndexPage';
+import SearchPage from './pages/SearchPage';
 import ItemPage from './pages/ItemPage';
 import ItemListPage from './pages/ItemListPage';
 
@@ -13,6 +13,7 @@ function App() {
       <Route component={ItemInputPage} path={'/input'} />
       <Route component={ItemPage} path={'/item/:itemId'} />
       <Route component={ItemListPage} path={'/item'} exact />
+      <Route component={SearchPage} path={'/search/:keyword'} />
     </>
   );
 }

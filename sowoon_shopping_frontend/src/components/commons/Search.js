@@ -29,11 +29,7 @@ const Search = ({ props }) => {
     <>
       <SearchWrapper>
         <SearchInput type={'text'} value={searchText} onChange={onChange} />
-        <Button
-          orange={'orange'}
-          type={'submit'}
-          to={`/api/search/${searchText}`}
-        >
+        <Button orange={'orange'} type={'submit'} to={`/search/${searchText}`}>
           검색
         </Button>
         <Blank />

@@ -3,7 +3,6 @@ import { withRouter } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import ItemListViewer from '../../components/viewer/ItemListViewer';
 import { listItems, unloadItems } from '../../modules/list';
-import { unloadPost } from '../../modules/item';
 
 const ItemListViewerContainer = () => {
   const dispatch = useDispatch();
@@ -15,7 +14,6 @@ const ItemListViewerContainer = () => {
 
   useEffect(() => {
     dispatch(listItems());
-    console.log('adsfadsf');
     return () => {
       dispatch(unloadItems());
     };

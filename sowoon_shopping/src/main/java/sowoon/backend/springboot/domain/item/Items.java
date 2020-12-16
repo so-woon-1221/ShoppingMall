@@ -14,11 +14,11 @@ public class Items{
 
     @Id
     private ObjectId id;
-    private String name;
-    private String content;
-    private String price;
-    private String thumbnail;
-    private String tags[];
+    private final String name;
+    private final String content;
+    private final String price;
+    private final String thumbnail;
+    private final String tags[];
 
     @Builder
     public Items(String name, String content, String price, String thumbnail, String tags[]){

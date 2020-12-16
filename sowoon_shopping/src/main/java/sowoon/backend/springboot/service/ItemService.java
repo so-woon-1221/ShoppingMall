@@ -6,13 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.ResponseEntity;
-import org.springframework.scheduling.annotation.Async;
-import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.context.annotation.ApplicationScope;
 import sowoon.backend.springboot.domain.item.Items;
 import sowoon.backend.springboot.web.dto.ItemSaveRequestDto;
 import java.util.*;
@@ -43,7 +38,9 @@ public class ItemService {
     @Transactional
     public List<Items> search(String text){
         System.out.println(text);
-        Query query = new Query(Criteria.where("tags").is(text));
+        Criteria criteria = new Criteria();
+        criteria.orOperator(Criteria.where("name").regex(text), Criteria.where("tags").regex(text));
+        Query query = new Query(criteria);
         return mongoTemplate.find(query, Items.class);
     }
 

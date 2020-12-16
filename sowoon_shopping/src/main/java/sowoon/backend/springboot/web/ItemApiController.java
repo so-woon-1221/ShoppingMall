@@ -1,8 +1,6 @@
 package sowoon.backend.springboot.web;
 
 import lombok.RequiredArgsConstructor;
-import org.bson.types.ObjectId;
-import org.springframework.http.HttpEntity;
 import org.springframework.web.bind.annotation.*;
 import sowoon.backend.springboot.domain.item.Items;
 import sowoon.backend.springboot.service.ItemService;

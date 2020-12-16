@@ -16,11 +16,15 @@ const ItemViewerContainer = ({ match }) => {
 
   useEffect(() => {
     dispatch(readItem(itemId));
+    console.log(item);
     return () => {
       dispatch(unloadPost());
     };
   }, [dispatch, itemId]);
 
+  if (item === '') {
+    return <div>오류</div>;
+  }
   return (
     <>
       <ItemViewer item={item} error={error} loading={loading} />;

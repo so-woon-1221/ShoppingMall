@@ -6,3 +6,5 @@ export const inputItems = ({ name, content, price, thumbnail, tags }) =>
 export const readItem = (id) => client.get(`/api/item/${id}`);
 
 export const listItem = () => client.get('/api/item');
+
+export const searchItem = (keyword) => client.get(`/api/search/${keyword}`);

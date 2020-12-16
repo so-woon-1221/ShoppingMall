@@ -26,19 +26,17 @@ const Item = styled.div`
 `;
 
 const ItemImage = styled.img`
-  max-width: 50%;
+  max-width: 60%;
   height: auto;
 `;
 
 const ItemInfo = styled.div`
   padding-left: 1rem;
-  &:hover {
-    color: ${palette.gray[6]};
-  }
   h1 {
     font-size: 1rem;
   }
   h2 {
+    color: ${palette.gray[5]};
     font-size: 0.8rem;
   }
   p {
@@ -46,15 +44,17 @@ const ItemInfo = styled.div`
   }
 `;
 
-const listItem = ({ item }) => {
-  const { thumbnail, name, price, id } = item;
+const ListItem = ({ item }) => {
+  const { thumbnail, name, price, _id, tags } = item;
   return (
     <Item>
-      {/*<ItemImage src={thumbnail} />*/}
+      <ItemImage src={thumbnail} />
       <ItemInfo>
-        <h2>GOODDA</h2>
         <h1>{name}</h1>
         <p>{price}</p>
+        {tags.map((tag) => (
+          <h2>#{tag}</h2>
+        ))}
         <Button>확인</Button>
       </ItemInfo>
     </Item>
@@ -69,14 +69,15 @@ const ItemListViewer = ({ loading, error, items }) => {
     <>
       <ItemListViewBlock>
         <ItemListViewWrapper>
-          <ItemListView className={'container'}></ItemListView>
-          {!loading && items && (
-            <div>
-              {items.map((item) => (
-                <listItem item={item} key={item.thumbnail} />
-              ))}
-            </div>
-          )}
+          <ItemListView className={'container'}>
+            {!loading && items && (
+              <>
+                {items.map((item) => (
+                  <ListItem item={item} key={item.tags} />
+                ))}
+              </>
+            )}
+          </ItemListView>
         </ItemListViewWrapper>
       </ItemListViewBlock>
     </>
