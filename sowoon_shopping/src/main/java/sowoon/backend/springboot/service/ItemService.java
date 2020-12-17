@@ -1,7 +1,6 @@
 package sowoon.backend.springboot.service;
 
 import lombok.RequiredArgsConstructor;
-import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
@@ -10,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import sowoon.backend.springboot.domain.item.Items;
 import sowoon.backend.springboot.web.dto.ItemSaveRequestDto;
+
 import java.util.*;
 
 @RequiredArgsConstructor
@@ -19,9 +19,9 @@ public class ItemService {
     private final MongoTemplate mongoTemplate;
 
     @Transactional
-    public Items save(ItemSaveRequestDto itemSaveRequestDto){
-        if(itemSaveRequestDto.getName().isEmpty() || itemSaveRequestDto.getContent().isEmpty() || itemSaveRequestDto.getPrice().isEmpty()
-        || itemSaveRequestDto.getTags().length==0){
+    public Items save(ItemSaveRequestDto itemSaveRequestDto) {
+        if (itemSaveRequestDto.getName().isEmpty() || itemSaveRequestDto.getContent().isEmpty() || itemSaveRequestDto.getPrice().isEmpty()
+                || itemSaveRequestDto.getTags().length == 0) {
             throw new IllegalArgumentException("빈칸을 모두 채우세요");
         }
         Items newItems = itemSaveRequestDto.toEntity();
@@ -30,13 +30,13 @@ public class ItemService {
     }
 
     @Transactional
-    public List<Items> list(){
+    public List<Items> list() {
         System.out.println("asdfasdfasdfasdf");
         return mongoTemplate.findAll(Items.class);
     }
 
     @Transactional
-    public List<Items> search(String text){
+    public List<Items> search(String text) {
         System.out.println(text);
         Criteria criteria = new Criteria();
         criteria.orOperator(Criteria.where("name").regex(text), Criteria.where("tags").regex(text));
