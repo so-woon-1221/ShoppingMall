@@ -4,6 +4,7 @@ import Responsive from './Responsive';
 import Button from './Button';
 import { Link } from 'react-router-dom';
 import Search from './Search';
+import { useDispatch, useSelector } from 'react-redux';
 
 const HeaderBlock = styled.div`
   position: fixed;
@@ -37,6 +38,9 @@ const Spacer = styled.div`
 `;
 
 const Header = () => {
+  const { user } = useSelector(({ login }) => ({
+    user: login.user,
+  }));
   return (
     <>
       <HeaderBlock>
@@ -54,7 +58,11 @@ const Header = () => {
             <Search className={'search'} />
           </div>
           <div className={'right'}>
-            <Button to={'/login'}>로그인</Button>
+            {user === '' ? (
+              <Button to={'/login'}>로그인</Button>
+            ) : (
+              <Button to={'/input'}>장바구니</Button>
+            )}
           </div>
         </Wrapper>
       </HeaderBlock>

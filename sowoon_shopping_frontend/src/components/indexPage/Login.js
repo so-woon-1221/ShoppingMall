@@ -6,6 +6,11 @@ import client from '../../lib/api/client';
 import { useDispatch, useSelector } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { loginUser } from '../../modules/login';
+import styled from 'styled-components';
+
+const LoginBlock = styled.div`
+  margin-top: 1.5rem;
+`;
 
 const Login = ({ history }) => {
   const dispatch = useDispatch();
@@ -21,9 +26,9 @@ const Login = ({ history }) => {
     const email = response.profileObj.email;
     const image = response.profileObj.imageUrl;
 
-    console.log(name);
-
     dispatch(loginUser({ name, email, image }));
+
+    console.log(name);
   };
 
   useEffect(() => {
@@ -35,16 +40,16 @@ const Login = ({ history }) => {
     }
   });
   return (
-    <>
-      <div>
+    <div>
+      <LoginBlock>
         <GoogleLogin
           clientId="429509298852-vnmva42a5utbrgnrtpemplvs5uqt4pvd.apps.googleusercontent.com"
           onSuccess={OnSuccess}
           onFailure={(result) => console.log(result)}
           cookiePolicy={'single_host_origin'}
         />
-      </div>
-    </>
+      </LoginBlock>
+    </div>
   );
 };
 

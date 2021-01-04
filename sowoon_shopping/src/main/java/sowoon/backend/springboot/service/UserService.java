@@ -1,6 +1,7 @@
 package sowoon.backend.springboot.service;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -10,6 +11,8 @@ import sowoon.backend.springboot.web.dto.UserSaveRequestDto;
 @RequiredArgsConstructor
 @Service
 public class UserService {
+
+    @Autowired
     private final MongoTemplate mongoTemplate;
 
     @Transactional

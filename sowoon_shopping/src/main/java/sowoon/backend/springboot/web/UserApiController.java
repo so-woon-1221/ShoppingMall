@@ -15,6 +15,7 @@ public class UserApiController {
 
     @PostMapping("/api/login")
     public User save(@RequestBody UserSaveRequestDto userSaveRequestDto){
+        System.out.println("loginlogin");
         return userService.save(userSaveRequestDto);
     }
 }
