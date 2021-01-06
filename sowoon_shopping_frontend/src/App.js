@@ -5,6 +5,7 @@ import SearchPage from './pages/SearchPage';
 import ItemPage from './pages/ItemPage';
 import ItemListPage from './pages/ItemListPage';
 import LoginPage from './pages/LoginPage';
+import RegisterPage from './pages/RegisterPage';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
       <Route component={ItemListPage} path={'/item'} exact />
       <Route component={SearchPage} path={'/search/:keyword'} />
       <Route component={LoginPage} path={'/login'} />
+      <Route component={RegisterPage} path={'/register'} />
     </>
   );
 }

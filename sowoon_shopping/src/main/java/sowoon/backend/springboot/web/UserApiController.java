@@ -13,9 +13,13 @@ import sowoon.backend.springboot.web.dto.UserSaveRequestDto;
 public class UserApiController {
     private final UserService userService;
 
-    @PostMapping("/api/login")
-    public User save(@RequestBody UserSaveRequestDto userSaveRequestDto){
-        System.out.println("loginlogin");
+    @PostMapping("/api/register")
+    public User save(@RequestBody UserSaveRequestDto userSaveRequestDto) {
         return userService.save(userSaveRequestDto);
+    }
+
+    @PostMapping("/api/register/check")
+    public Boolean check(@RequestBody String email) {
+        return userService.checkSame(email);
     }
 }
