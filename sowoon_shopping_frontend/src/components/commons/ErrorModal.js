@@ -47,6 +47,7 @@ const ErrorModal = ({
   description,
   confirmText = '확인',
   onConfirm,
+  link,
 }) => {
   if (!visible) return null;
   return (
@@ -55,7 +56,7 @@ const ErrorModal = ({
         <h2>{title}</h2>
         <p>{description}</p>
         <div className={'buttons'}>
-          <StyledButton orange onClick={onConfirm}>
+          <StyledButton orange onClick={onConfirm} to={link}>
             {confirmText}
           </StyledButton>
         </div>

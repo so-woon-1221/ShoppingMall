@@ -12,6 +12,9 @@ import ErrorModal from '../../components/commons/ErrorModal';
 
 const RegisterContainer = () => {
   const [modal, setModal] = useState(false);
+  const [text, setText] = useState('');
+  const [register, setRegister] = useState(false);
+
   const dispatch = useDispatch();
   const {
     name,
@@ -40,10 +43,16 @@ const RegisterContainer = () => {
   const onCheck = () => {
     dispatch(registerCheck({ email }));
     setModal(true);
+    if (!check) {
+      setText('사용할 수 있습니다.');
+    } else {
+      setText('이미 사용 중입니다.');
+    }
   };
 
   const onRegister = () => {
     dispatch(registerUser({ name, email, password, image }));
+    setRegister(true);
   };
 
   const onConfirm = () => {
@@ -69,6 +78,8 @@ const RegisterContainer = () => {
         onCheck={onCheck}
         modal={modal}
         onConfirm={onConfirm}
+        text={text}
+        register={register}
       />
     </>
   );

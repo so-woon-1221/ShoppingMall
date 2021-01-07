@@ -1,6 +1,7 @@
 import React from 'react';
 import Header from '../components/commons/Header';
 import RegisterContainer from '../container/User/RegisterContainer';
+import { withRouter } from 'react-router-dom';
 
 const RegisterPage = () => {
   return (
@@ -11,4 +12,4 @@ const RegisterPage = () => {
   );
 };
 
-export default RegisterPage;
+export default withRouter(RegisterPage);

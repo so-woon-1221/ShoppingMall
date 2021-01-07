@@ -4,6 +4,7 @@ import Button from '../commons/Button';
 import palette from '../../lib/styles/palette';
 import Responsive from '../commons/Responsive';
 import ErrorModal from '../commons/ErrorModal';
+import { withRouter } from 'react-router-dom';
 
 const RegisterBlock = styled(Responsive)`
   margin-top: 1.5rem;
@@ -67,6 +68,8 @@ const Register = ({
   check,
   modal,
   onConfirm,
+  text,
+  register,
 }) => {
   const onChangeName = (e) => {
     onChangeField({ key: 'name', value: e.target.value });
@@ -95,7 +98,7 @@ const Register = ({
           visible={modal}
           onConfirm={onConfirm}
           title={'중복확인'}
-          description={check.toString()}
+          description={text}
         />
         <h4>아이디</h4>
         <StyledInput
@@ -119,9 +122,15 @@ const Register = ({
           <p>이미 회원이신가요?</p>
           <a href={'/login'}>로그인하기</a>
         </SubInfoBlock>
+        <ErrorModal
+          visible={register}
+          title={'회원가입 완료'}
+          description={'로그인 화면으로 이동합니다.'}
+          link={'/login'}
+        />
       </RegisterBlock>
     </>
   );
 };
 
-export default Register;
+export default withRouter(Register);

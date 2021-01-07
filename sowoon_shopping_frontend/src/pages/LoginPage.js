@@ -1,6 +1,7 @@
 import React from 'react';
 import Header from '../components/commons/Header';
 import Login from '../components/indexPage/Login';
+import { withRouter } from 'react-router-dom';
 
 const LoginPage = () => {
   return (
@@ -11,4 +12,4 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage;
+export default withRouter(LoginPage);
