@@ -1,15 +1,14 @@
 import React from 'react';
 import Header from '../components/commons/Header';
-import Login from '../components/indexPage/Login';
-import { withRouter } from 'react-router-dom';
+import LoginContainer from '../container/User/LoginContainer';
 
 const LoginPage = () => {
   return (
     <>
       <Header />
-      <Login />
+      <LoginContainer />
     </>
   );
 };
 
-export default withRouter(LoginPage);
+export default LoginPage;
