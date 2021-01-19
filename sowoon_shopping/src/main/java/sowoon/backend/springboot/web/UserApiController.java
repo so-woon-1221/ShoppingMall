@@ -15,11 +15,22 @@ public class UserApiController {
 
     @PostMapping("/api/register")
     public User save(@RequestBody UserSaveRequestDto userSaveRequestDto) {
+        System.out.println(userSaveRequestDto.getCart());
         return userService.save(userSaveRequestDto);
     }
 
     @PostMapping("/api/register/check")
     public Boolean check(@RequestBody String email) {
         return userService.checkSame(email);
+    }
+
+    @PostMapping("/api/login")
+    public String login(@RequestBody String info) {
+        return userService.logIn(info);
+    }
+
+    @PostMapping("/api/user/cartIn")
+    public User cartIn(@RequestBody String info) {
+        return userService.cartIn(info);
     }
 }

@@ -22,6 +22,7 @@ const RegisterContainer = () => {
     image,
     password,
     check,
+    cart,
     user,
     userError,
     history,
@@ -33,6 +34,7 @@ const RegisterContainer = () => {
     check: register.check,
     user: register.user,
     userError: register.userError,
+    cart: register.cart,
   }));
 
   const onChangeField = useCallback(
@@ -51,7 +53,7 @@ const RegisterContainer = () => {
   };
 
   const onRegister = () => {
-    dispatch(registerUser({ name, email, password, image }));
+    dispatch(registerUser({ name, email, password, image, cart }));
     setRegister(true);
   };
 

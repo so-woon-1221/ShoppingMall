@@ -21,7 +21,13 @@ const [
 export const initialize = createAction(INITIALIZE);
 export const registerUser = createAction(
   REGISTER_USER,
-  ({ name, email, image, password }) => ({ name, email, image, password }),
+  ({ name, email, image, password, cart }) => ({
+    name,
+    email,
+    image,
+    password,
+    cart,
+  }),
 );
 export const changeField = createAction(CHANGE_FIELD, ({ key, value }) => ({
   key,
@@ -51,6 +57,7 @@ const initialState = {
   email: '',
   image: '',
   password: '',
+  cart: [],
   check: false,
   user: '',
   userError: null,

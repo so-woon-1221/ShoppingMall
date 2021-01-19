@@ -87,7 +87,7 @@ const ItemContent = styled.div`
   //padding-left: 5rem;
 `;
 
-const ItemViewer = ({ item, error, loading }) => {
+const ItemViewer = ({ item, error, loading, onCart }) => {
   if (error) {
     console.log(error);
     if (error.response && error.response.status === 404) {
@@ -99,8 +99,6 @@ const ItemViewer = ({ item, error, loading }) => {
   if (loading || !item) {
     return null;
   }
-
-  console.log(item);
 
   let { id, name, content, price, tags, thumbnail } = item;
 
@@ -123,7 +121,9 @@ const ItemViewer = ({ item, error, loading }) => {
               ))}
             </Tags>
             <Button>구매</Button>
-            <Button orange>장바구니</Button>
+            <Button orange onClick={onCart}>
+              장바구니
+            </Button>
           </ItemHeader>
         </ItemHeaderWrapper>
       </ItemHeaderBlock>

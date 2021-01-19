@@ -6,6 +6,7 @@ import item, { readSaga } from './item';
 import list, { listSaga, searchSaga } from './list';
 import login, { loginSaga } from './login';
 import register, { registerSaga, checkSaga } from './register';
+import cart, { inSaga } from './cart';
 
 const rootReducer = combineReducers({
   loading,
@@ -13,6 +14,7 @@ const rootReducer = combineReducers({
   item,
   list,
   login,
+  cart,
   register,
 });
 
@@ -25,6 +27,7 @@ export function* rootSaga() {
     loginSaga(),
     registerSaga(),
     checkSaga(),
+    inSaga(),
   ]);
 }
 
