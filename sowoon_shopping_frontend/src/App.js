@@ -6,6 +6,7 @@ import ItemPage from './pages/ItemPage';
 import ItemListPage from './pages/ItemListPage';
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
+import CartPage from './pages/CartPage';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
       <Route component={SearchPage} path={'/search/:keyword'} />
       <Route component={LoginPage} path={'/login'} />
       <Route component={RegisterPage} path={'/register'} />
+      <Route component={CartPage} path={'/:user/cart'} />
     </>
   );
 }

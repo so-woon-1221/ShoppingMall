@@ -89,4 +89,17 @@ public class UserService {
 
         return mongoTemplate.find(query, User.class).get(0);
     }
+
+    @Transactional
+    public List<String> getCart(String user) {
+        System.out.println(user);
+        Criteria criteria = new Criteria();
+        criteria.andOperator(Criteria.where("email").is(user));
+        Query query = new Query(criteria);
+
+        List<User> tempUser = mongoTemplate.find(query, User.class);
+        User loginUser = tempUser.get(0);
+
+        return loginUser.getCart();
+    }
 }

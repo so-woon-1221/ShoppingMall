@@ -1,12 +1,13 @@
 package sowoon.backend.springboot.web;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import sowoon.backend.springboot.domain.user.User;
 import sowoon.backend.springboot.service.UserService;
 import sowoon.backend.springboot.web.dto.UserSaveRequestDto;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
@@ -32,5 +33,10 @@ public class UserApiController {
     @PostMapping("/api/user/cartIn")
     public User cartIn(@RequestBody String info) {
         return userService.cartIn(info);
+    }
+
+    @GetMapping("/api/{user}/cart")
+    public List<String> getCart(@PathVariable String user) {
+        return userService.getCart(user);
     }
 }

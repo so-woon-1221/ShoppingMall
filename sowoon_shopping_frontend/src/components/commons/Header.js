@@ -61,7 +61,7 @@ const Header = () => {
             {user === '' ? (
               <Button to={'/login'}>로그인</Button>
             ) : (
-              <Button to={'/input'}>{user} 장바구니</Button>
+              <Button to={`/${user}/cart`}>{user} 장바구니</Button>
             )}
           </div>
         </Wrapper>

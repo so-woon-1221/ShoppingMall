@@ -11,3 +11,5 @@ export const registerCheck = ({ email }) =>
 
 export const cartIn = ({ itemId, user }) =>
   client.post('/api/user/cartIn', { itemId, user });
+
+export const getCart = (user) => client.get(`/api/${user}/cart`);
